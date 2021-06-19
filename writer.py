@@ -10,21 +10,11 @@ client = hazelcast.HazelcastClient(
     ]
 )
 
-my_queue = client.get_queue("task3")
+my_queue = client.get_queue("task3").blocking()
 
 for i in range(20):
-    print(my_queue.add(i).result())
+    print(my_queue.offer(i))
     print('Producing: ' + str(i))
-    time.sleep(0.5)
 my_queue.add(-1)
-
-'''
-for i in range(1, 200):
-    my_queue.add(i)
-    print("Add: " + str(i))
-    time.sleep(0.5)
-
-my_queue.add(-1)
-'''
 
 client.shutdown()

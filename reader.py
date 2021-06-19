@@ -10,14 +10,11 @@ client = hazelcast.HazelcastClient(
     ]
 )
 
-my_queue = client.get_queue("task3")
-
-time.sleep(10)
+my_queue = client.get_queue("task3").blocking()
 
 while True:
-    val = my_queue.take().result()
+    val = my_queue.take()
     print("Read:" + str(val))
-    time.sleep(0.6)
     if val == -1:
         print("Read stop val: " + str(val))
         break
