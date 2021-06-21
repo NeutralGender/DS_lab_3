@@ -26,6 +26,7 @@ for i in range(1000):
     while True:
         old_value = my_map.get(key)
         new_value = int(old_value) + 1
+        time.sleep(0.02)
         if custom_replace_if_the_same(key, old_value, new_value):
             break
         
